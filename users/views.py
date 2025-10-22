@@ -56,3 +56,19 @@ class RegisterViewset(viewsets.ViewSet):
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=400)
+        
+
+
+
+
+# eta all user er list
+class UserViewset(viewsets.ViewSet):
+    # IsAuthenticated er kaygay jodi AllowAny hoy tahole token ba login chara jekono user data gulo access korte parbe 
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
+
+    def list(self, request):
+        queryset = User.objects.all()
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data) 
