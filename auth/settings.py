@@ -1,6 +1,6 @@
  
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "corsheaders",
     'users',
     'knox',
+    'django_rest_passwordreset',
 ]
 
 MIDDLEWARE = [
@@ -133,9 +134,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-
-EMAIL_HOST_USER = 'your_email@gmail.com'
-EMAIL_HOST_PASSWORD = 'nlbp uzgv xeuc yscy'
+DEFAULT_FROM_EMAIL = 'My App'
+EMAIL_HOST_USER = os.environ.get("AA_EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("AA_EMAIL_HOST_PASSWORD")
 
 
 # Static files (CSS, JavaScript, Images)
