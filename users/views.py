@@ -11,6 +11,7 @@ from rest_framework import status
 User = get_user_model()
 # Create your views here.
 
+ 
 
 class LoginViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
