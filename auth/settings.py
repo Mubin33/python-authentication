@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'users',
     'knox',
     'django_rest_passwordreset',
+    # for make a api doc
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -62,6 +64,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 AUTHENTICATION_BACKEND = [
     'users.auth_backend.EmailAuthBackend',
+    # 'django.contrib.auth.backends.ModelBackend'
 ]
 
 
@@ -70,7 +73,7 @@ ROOT_URLCONF = 'auth.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/"templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,10 +137,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'My App'
-EMAIL_HOST_USER = os.environ.get("AA_EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("AA_EMAIL_HOST_PASSWORD")
 
+EMAIL_HOST_USER = "minpublic33@gmail.com"
+EMAIL_HOST_PASSWORD = "twfd jxjj qkbv gbqy"  # ✅ Gmail App Password (not your normal password)
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+
+# EMAIL_HOST_PASSWORD = "zxwv exhg gxyg lawv"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/

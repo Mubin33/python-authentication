@@ -1,7 +1,15 @@
 from rest_framework import serializers
 from .models import *
 from django.contrib.auth import get_user_model
+from drf_yasg.utils import swagger_auto_schema
 User = get_user_model()
+
+#  get active login user
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['id', 'first_name', 'last_name', 'email']
+
 
 
 class LoginSerializer(serializers.Serializer):
@@ -26,3 +34,5 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+    
+ 

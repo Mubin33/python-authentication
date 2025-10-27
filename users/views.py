@@ -8,6 +8,13 @@ from django.contrib.auth import get_user_model, authenticate
 from knox.models import AuthToken
 from rest_framework import status
 
+from drf_yasg.utils import swagger_auto_schema
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .serializer import UserSerializer
+
 User = get_user_model()
 # Create your views here.
 
@@ -17,13 +24,18 @@ class LoginViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = LoginSerializer
 
+    # ei @swagger_auto_schema ta use kora hoise shudu matro api doc teheke thik thak accccess pawar jonno
+    @swagger_auto_schema(
+        operation_description="User login and token generation",
+        request_body=LoginSerializer
+    )
+
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
             email = serializer.validated_data['email']
             password = serializer.validated_data['password']
-
 
             user = authenticate(request, email=email, password=password)
 
@@ -50,6 +62,13 @@ class RegisterViewset(viewsets.ViewSet):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
 
+    # ei @swagger_auto_schema ta use kora hoise shudu matro api doc teheke thik thak accccess pawar jonno 
+    @swagger_auto_schema(
+        operation_description="Register a new user",
+        request_body=RegisterSerializer,
+        responses={201: RegisterSerializer}
+    )
+
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
@@ -73,3 +92,14 @@ class UserViewset(viewsets.ViewSet):
         queryset = User.objects.all()
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data) 
+    
+
+
+
+#  get active login user
+class UserProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
