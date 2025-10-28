@@ -23,7 +23,7 @@ class LoginSerializer(serializers.Serializer):
     
 
     
-
+# for authentication (register user)
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

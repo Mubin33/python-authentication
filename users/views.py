@@ -57,6 +57,7 @@ class LoginViewset(viewsets.ViewSet):
 
 
 
+# for authentication (register user)
 class RegisterViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     queryset = User.objects.all()

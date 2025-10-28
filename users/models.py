@@ -11,15 +11,15 @@ from django.urls import reverse
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.utils.html import strip_tags
 from django.conf import settings
-# Create your models here.
 
 
+
+
+# for authentication (register user)
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError('Email is a requare')
-        
-
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
@@ -30,7 +30,6 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(email, password, **extra_fields)
-
 
 class CustomUser(AbstractUser):
     email = models.EmailField(max_length=200, unique=True)

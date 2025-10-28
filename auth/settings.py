@@ -47,6 +47,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+# for auhentication 
 CORS_ALLOWED_ORIGINS = [
     "https://example.com",
     "https://sub.example.com",
@@ -54,19 +56,15 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:9000",
     "http://localhost:5173",
 ] 
-
 # CORS_ALLOWED_ORIGIN_REGEXES = [
 #     r"^https://\w+\.example\.com$",
 # ]
-
 AUTH_USER_MODEL = 'users.CustomUser'
-
-
 AUTHENTICATION_BACKEND = [
     'users.auth_backend.EmailAuthBackend',
     # 'django.contrib.auth.backends.ModelBackend'
 ]
-
+# 
 
 ROOT_URLCONF = 'auth.urls'
 

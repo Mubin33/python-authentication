@@ -29,7 +29,8 @@ urlpatterns = [
 
 # 
     path('admin/', admin.site.urls),
-    path('/', include('users.urls')),
+    # add this path for auhentication 
+    path('api/', include('users.urls')),
     # path('api-auth/', include('rest_framework.urls')),
    #  path('api/auth/', include('knox.urls')), 
     path('api/password-reset/', include('django_rest_passwordreset.urls'), name='password-reset'),
