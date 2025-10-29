@@ -19,7 +19,7 @@ User = get_user_model()
 # Create your views here.
 
  
-
+# for authentication (Login user)
 class LoginViewset(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = LoginSerializer

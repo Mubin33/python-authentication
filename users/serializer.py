@@ -11,7 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'first_name', 'last_name', 'email']
 
 
-
+# for authentication (Login user)
 class LoginSerializer(serializers.Serializer):
     email =serializers.EmailField()
     password = serializers.CharField()

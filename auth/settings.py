@@ -27,8 +27,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    "corsheaders",
+    # if we installed django-cors-headers
+    'corsheaders',
     'users',
+    # for authentication (Login user)
     'knox',
     'django_rest_passwordreset',
     # for make a api doc
@@ -36,6 +38,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # if we installed django-cors-headers
     "corsheaders.middleware.CorsMiddleware", 
 
     'django.middleware.security.SecurityMiddleware',
@@ -84,6 +87,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'auth.wsgi.application'
+# for authentication (Login user)
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
     }

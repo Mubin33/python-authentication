@@ -1,5 +1,5 @@
 
-# এই file and code লগইন Authentication er jonno
+# for authentication (Login user)
 # first install knox
 from django.contrib.auth import get_user_model
 User = get_user_model()
